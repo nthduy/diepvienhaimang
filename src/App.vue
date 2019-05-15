@@ -52,33 +52,35 @@ import RevealPlayer from "./components/RevealPlayer";
 import { Random } from "random-js";
 
 const destinations = [
-  "Nghĩa trang",
-  "Bệnh viện",
+  "bãi giữ xe nghĩa trang Bình Hưng Hoà",
+  "cổng chính bệnh viện 115",
   "Doanh trại quân đội",
-  "Ngã tư bảy hiền",
-  "Nhà thờ",
-  "Chùa",
-  "Chợ",
-  "Địa đạo",
-  "kênh nhiêu lộc",
-  "Gare Lyon Perrache",
-  "Lisbon",
-  "Paris",
-  "Lyon",
-  "Gare Lyon Part Dieu",
-  "Marseille",
-  "Cầu chữ Y",
-  "Đồi thông hai mộ",
-  "Notre dame de Paris",
-  "Pantheon",
-  "Berlin",
-  "Tokyo",
-  "Hồ bơ",
+  "Giữa ngã tư Bảy Hiền",
+  "Đối diện nhà thờ Đức Bà Sài Gòn",
+  "Chùa Một Cột",
+  "Chợ Bà Chiều",
+  "Địa đạo củ chi",
+  "Phúc Long",
+  "Starbucks",
+  "Ngã năm chuồng chó",
+  "Thảo cầm viên",
+  "Trại tiêm chủng",
+  "Phòng thử đồ",
+  "Bệnh viện chợ rẫy",
+  "Duới cột cờ",
+  "Phòng khám thai",
+  "Nhà vệ sinh công cộng",
+  "Khoa sản bệnh viện Từ Dũ",
+  "Sân thuợng Landmark 81",
+  "Chân cầu chữ Y",
+  "Kênh nhiêu lộc",
+  "Đồi thông hai mộ Đà Lạt",
+  "Hồ bơi Cộng Hoà",
   "Rừng ngập mặn",
   "Sa mạc Sahara",
   "Đảo Phú Quốc",
-  "Big Ben Tower",
-  "La tour Eiffel"
+  "Phòng thử đồ H&M",
+  "Cầu rồng Đà Nẵng"
 ];
 
 export default {
@@ -180,8 +182,6 @@ html {
   font-family: "Mali", cursive;
   color: $white;
   background: $black;
-  display: flex;
-  flex-direction: column;
   height: 100%;
   max-height: 100%;
   overflow: hidden;
@@ -191,7 +191,8 @@ html {
     width: 100%;
     text-align: center;
     margin-bottom: 1rem;
-    flex: auto 0 0;
+    height: auto;
+
     &__text {
       font-family: "Sedgwick Ave", cursive;
       color: $primary;
@@ -203,7 +204,7 @@ html {
   }
 
   &__content {
-    flex: auto 1 1;
+    height: calc(100% - 132px);
   }
 
   .countdown {
