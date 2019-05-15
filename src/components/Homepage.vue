@@ -1,6 +1,6 @@
 <template>
   <div class="homepage">
-    <form class="homepage__form" @submit="onSubmit">
+    <form class="homepage__form" @submit.prevent="onSubmit">
       <div v-if="!showRule" class="homepage__form__field">
         <VueFormField
           type="number"
