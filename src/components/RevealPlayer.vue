@@ -1,6 +1,6 @@
 <template>
   <div class="reveal-player">
-    <p class="reveal-player__tips">Hãy nhớ kĩ danh tính của bạn và đừng để nguời khác biết nhé</p>
+    <p class="reveal-player__tips">Hãy nhớ kĩ danh tính của bạn và đừng để nguời khác biết nhé !</p>
     <div v-if="ready" class="reveal-player__readied">
       <div v-if="!isSecretAgent" class="reveal-player__readied__destination">
         <h4
@@ -16,7 +16,9 @@
     </div>
 
     <div v-if="!ready" class="reveal-player__not-readied">
-      <p class="reveal-player__not-readied__text">Sẵn sàng ?</p>
+      <p
+        class="reveal-player__not-readied__text"
+      >Nguời chơi thứ {{ currentPlayer + 1 }}, bạn đã Sẵn sàng ?</p>
       <VueButton class="reveal-player__not-readied__ready" @click="readied">GO 🔥</VueButton>
     </div>
   </div>

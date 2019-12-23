@@ -6,7 +6,12 @@
     </div>
 
     <div class="app__content">
-      <Homepage v-if="step === 1" @startGame="startGame"/>
+      <Homepage
+        v-if="step === 1"
+        @startGame="startGame"
+        :playerCount="playerCount"
+        :playTime="playTime"
+      />
 
       <RevealPlayer
         v-if="step === 2"
@@ -17,7 +22,7 @@
       />
 
       <div v-if="step === 3" class="countdown">
-        <countdown ref="countdown" :time="playTime" @end="notFound" :transform="transform">
+        <countdown ref="countdown" :time="playTimeMs" @end="notFound" :transform="transform">
           <template slot-scope="props">
             <h4>Thời gian còn lại</h4>
             <p class="countdown__time">{{ props.minutes }} : {{ props.seconds }}</p>
@@ -43,6 +48,8 @@
         <VueButton @click="restart" class="endgame__button">Chơi lại</VueButton>
       </div>
     </div>
+
+    <div class="app__footer">Phát triển bởi Nguyễn Thế Hoài Duy</div>
   </div>
 </template>
 
@@ -52,35 +59,39 @@ import RevealPlayer from "./components/RevealPlayer";
 import { Random } from "random-js";
 
 const destinations = [
-  "bãi giữ xe nghĩa trang Bình Hưng Hoà",
-  "cổng chính bệnh viện 115",
+  "Bãi giữ xe nghĩa trang Bình Hưng Hoà",
+  "Cổng chính bệnh viện 115",
   "Doanh trại quân đội",
   "Giữa ngã tư Bảy Hiền",
   "Đối diện nhà thờ Đức Bà Sài Gòn",
   "Chùa Một Cột",
   "Chợ Bà Chiều",
   "Địa đạo củ chi",
-  "Phúc Long",
-  "Starbucks",
+  "Tầng 2 Phúc Long phố đi bộ Nguyễn Huệ",
+  "Starbucks New World Sài Gòn",
   "Ngã năm chuồng chó",
-  "Thảo cầm viên",
-  "Trại tiêm chủng",
-  "Phòng thử đồ",
+  "Chuồng Voi - Thảo cầm viên",
+  "Phòng thử đồ Uniqlo Đồng Khởi",
   "Bệnh viện chợ rẫy",
-  "Duới cột cờ",
-  "Phòng khám thai",
-  "Nhà vệ sinh công cộng",
+  "Phòng khám thai bệnh viện từ dũ",
+  "Nhà vệ sinh công cộng ",
   "Khoa sản bệnh viện Từ Dũ",
   "Sân thuợng Landmark 81",
   "Chân cầu chữ Y",
   "Kênh nhiêu lộc",
   "Đồi thông hai mộ Đà Lạt",
+  "Trại Mát Đà Lạt",
   "Hồ bơi Cộng Hoà",
-  "Rừng ngập mặn",
-  "Sa mạc Sahara",
   "Đảo Phú Quốc",
-  "Phòng thử đồ H&M",
-  "Cầu rồng Đà Nẵng"
+  "Cầu rồng Đà Nẵng",
+  "Ghềnh Đá Dĩa Phú Yên",
+  "Đảo Khỉ Cần Giờ",
+  "Bạch Dinh Vũng Tàu",
+  "Đỉnh Núi Bà Đen",
+  "Chùa Linh Ứng - Đà Nẵng",
+  "Thanh máy núi Ngũ Hành Sơn",
+  "Lệ Chi Viên",
+  "Vĩ Tuyến 17"
 ];
 
 export default {
@@ -102,14 +113,13 @@ export default {
       destination: "",
       end: false,
       isLost: false,
-      playTime: 0
+      playTime: 180
     };
   },
 
   methods: {
     restart() {
       this.step = 1;
-      this.playerCount = 3;
       this.error = false;
       this.errorMessage = "";
       this.currentPlayer = 0;
@@ -117,7 +127,6 @@ export default {
       this.destination = "";
       this.end = false;
       this.isLost = false;
-      this.playTime = 0;
     },
 
     startGame({ playerCount, playTime }) {
@@ -156,6 +165,12 @@ export default {
       this.step++;
       this.isLost = true;
       this.end = true;
+    }
+  },
+
+  computed: {
+    playTimeMs() {
+      return this.playTime * 1000;
     }
   }
 };
@@ -204,7 +219,16 @@ html {
   }
 
   &__content {
-    height: calc(100% - 132px);
+    height: calc(100% - 152px);
+  }
+
+  &__footer {
+    height: 20px;
+    font-size: 12px;
+    margin: 4px auto;
+    color: #cccccc;
+    font-style: italic;
+    text-align: center;
   }
 
   .countdown {

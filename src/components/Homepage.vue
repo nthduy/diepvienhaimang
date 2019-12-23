@@ -7,14 +7,14 @@
           min="3"
           id="playerCount"
           title="Số luợng nguời chơi"
-          v-model.number="playerCount"
+          v-model.number="internalPlayerCount"
         >
           <VueInput
             class="flat homepage__form__field__input"
             type="number"
             min="3"
             id="playerCount"
-            v-model.number="playerCount"
+            v-model.number="internalPlayerCount"
           />
         </VueFormField>
 
@@ -23,14 +23,15 @@
           min="3"
           id="playTime"
           title="Thời gian chơi (giây)"
-          v-model.number="playTime"
+          v-model.number="internalPlayTime"
         >
           <VueInput
             class="flat homepage__form__field__input"
             type="number"
             :min="playerCount*60"
             id="playTime"
-            v-model.number="playTime"
+            :step="30"
+            v-model.number="internalPlayTime"
           />
         </VueFormField>
       </div>
@@ -60,12 +61,24 @@
 export default {
   name: "Homepage",
 
+  props: {
+    playerCount: {
+      type: Number,
+      required: true
+    },
+
+    playTime: {
+      type: Number,
+      required: true
+    }
+  },
+
   data() {
     return {
       error: false,
-      playerCount: 3,
-      playTime: 180,
-      showRule: false
+      showRule: false,
+      internalPlayerCount: this.playerCount,
+      internalPlayTime: this.playTime
     };
   },
 
@@ -82,8 +95,8 @@ export default {
       } else {
         this.error = false;
         this.$emit("startGame", {
-          playerCount: this.playerCount,
-          playTime: this.playTime * 1000
+          playerCount: this.internalPlayerCount,
+          playTime: this.internalPlayTime
         });
       }
     },
