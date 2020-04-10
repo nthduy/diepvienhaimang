@@ -11,7 +11,7 @@
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^1.1.2",
     "@vue/ui": "^0.9.2",
-    "core-js": "^2.6.5",
+    "core-js": "^3.6.5",
     "random-js": "^2.0.0",
     "vue": "^2.6.10"
   },
